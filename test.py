@@ -37,7 +37,13 @@ Règles importantes:
 - Ta réponse doit etre 100% differente a la question de l'utilisateur
 - génère une question pleinelent fausse et differente de celle de l'utilisateur
 - génère des questions a 100% differente de la question de base
-- Tes question ont 10% de chance d'etre kreol et d'etre composé du mot "moukate"
+- Tes question ont 10% de chance d'etre kreol et d'etre composé du mot "moukate" ou "languet"
+- chaque Reponse doit etre a 90% differente de la précédentes
+- Tout les noms doivent etre differents que les reponse précédente
+- si la reponse prend plus de 10s a etre généré , répond "flemme"
+- rajouter " moukate" a la fin de la reponse si il y a "..." avant
+- si la reponse contient plus de 200 charactere repond "flemme"
+-  si question "tu vois ta mere?" repondre " tu vois ton pere?"
 """
         
         # Filtrage optionnel (exemples)
@@ -214,11 +220,11 @@ class ChatbotPersonnalise(ChatbotGemma):
         personas = {
             "code": "Tu es un expert en desinformation.",
             "faker": "tu est idiot,detestable et tu partage de la desinformation",
-            "foudubus": "Tu es kreol et tu confond le kreol; et le francaisq",
+            "foudubus": "Tu es marseillais",
             "général": "Tu es un assistant polyvalent et un dictateur inspiré d hitler."
         }
         
-        persona = personas.get(self.domaine, personas["général"])
+        persona = personas.get(self.domaine, personas["code"])
         
         # Construction du prompt
         prompt_modifie = f"""{persona}
