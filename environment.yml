@@ -1,0 +1,42 @@
+name: transformers-env
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pip
+  
+  # PyTorch et vision
+  - pytorch
+  - torchvision
+  - torchaudio
+  
+  # Transformers et NLP
+  - pip:
+    - transformers
+    - accelerate
+    - datasets
+    - tokenizers
+    - sentencepiece
+    - protobuf
+    
+    # Outils utiles
+    - numpy
+    - pandas
+    - scikit-learn
+    - matplotlib
+    - seaborn
+    - tqdm
+    - jupyter
+    - ipykernel
+    
+    # Pour le fine-tuning
+    - peft
+    - bitsandbytes
+    
+    # Evaluation
+    - evaluate
+    - rouge-score
+    - sacrebleu
