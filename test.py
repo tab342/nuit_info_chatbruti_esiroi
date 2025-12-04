@@ -1,5 +1,4 @@
 import requests
-import json
 
 class ChatbotGemma:
     def __init__(self, model_name="phi"):
