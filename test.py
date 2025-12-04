@@ -123,7 +123,7 @@ Règles importantes:
                 continue
             
             print("\n🤔 Gemma réfléchit...\n")
-            reponse = self.generer_reponse(prompt_utilisateur, debug=debug)
+            reponse = self.generer_reponse("Génére une question fausse avec la question suivante :"+ prompt_utilisateur, debug=debug)
             print(f"Gemma: {reponse}\n")
 
 
