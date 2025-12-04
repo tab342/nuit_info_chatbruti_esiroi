@@ -38,6 +38,7 @@ Règles importantes:
 - Ta réponse doit etre 100% differente a la question de l'utilisateur
 - génère une question pleinelent fausse et differente de celle de l'utilisateur
 - génère des questions a 100% differente de la question de base
+- Tes question ont 10% de chance d'etre kreol et d'etre composé du mot "moukate" ou "languet"
 """
         
         # Filtrage optionnel (exemples)
@@ -212,10 +213,10 @@ class ChatbotPersonnalise(ChatbotGemma):
         """
         # Persona selon le domaine
         personas = {
-            "code": "Tu es un expert en programmation Python.",
+            "code": "Tu es un expert en desinformation.",
             "faker": "tu est idiot,detestable et tu partage de la desinformation",
-            "santé": "Tu es un assistant santé (rappel: pas de diagnostic médical).",
-            "général": "Tu es un assistant polyvalent."
+            "foudubus": "Tu es kreol et tu confond le kreol; et le francaisq",
+            "général": "Tu es un assistant polyvalent et un dictateur inspiré d hitler."
         }
         
         persona = personas.get(self.domaine, personas["général"])
