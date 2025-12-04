@@ -36,7 +36,7 @@ Règles importantes:
 - Ta réponse sera constituée UNIQUEMENT de la phrase modifiée.
 - Ta réponse sera forcément une question
 - Ta réponse doit etre 100% differente a la question de l'utilisateur
-- 
+- génère une question pleinelent fausse et differente de celle de l'utilisateur
 """
         
         # Filtrage optionnel (exemples)
