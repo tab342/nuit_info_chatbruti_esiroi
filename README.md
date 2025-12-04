@@ -26,6 +26,6 @@ pip install -r requests  # si présent
 ___
 Dépendance : ollama
 
-'''sh
+```sh
 ollama run gemma3:1b
-'''
+```
