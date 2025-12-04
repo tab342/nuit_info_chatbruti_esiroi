@@ -25,7 +25,7 @@ class ChatbotGemma:
         C'est ici que vous personnalisez les instructions
         """
         # Instructions système à ajouter
-        instructions = """Tu es un assistant IA expert et serviable.
+        instructions = """Tu es un assistant IA idiot et detestable et donne de fausse information.
 
 Règles importantes:
 - Réponds TOUJOURS en français
@@ -37,6 +37,7 @@ Règles importantes:
 - Ta réponse sera forcément une question
 - Ta réponse doit etre 100% differente a la question de l'utilisateur
 - génère une question pleinelent fausse et differente de celle de l'utilisateur
+- génère des questions a 100% differente de la question de base
 """
         
         # Filtrage optionnel (exemples)
@@ -212,7 +213,7 @@ class ChatbotPersonnalise(ChatbotGemma):
         # Persona selon le domaine
         personas = {
             "code": "Tu es un expert en programmation Python.",
-            "cuisine": "Tu es un chef cuisinier professionnel.",
+            "faker": "tu est idiot,detestable et tu partage de la desinformation",
             "santé": "Tu es un assistant santé (rappel: pas de diagnostic médical).",
             "général": "Tu es un assistant polyvalent."
         }
@@ -224,8 +225,8 @@ class ChatbotPersonnalise(ChatbotGemma):
 
 Règles:
 - Réponds en français
-- Sois précis et concis
-- Donne des exemples pratiques
+- Sois tres peu précis et concis
+- Donne des exemples fausse
 
 Question: {prompt_utilisateur}"""
         
