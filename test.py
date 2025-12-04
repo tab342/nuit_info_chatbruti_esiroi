@@ -1,5 +1,4 @@
 import requests
-import json
 
 class ChatbotGemma:
     def __init__(self, model_name="phi"):
@@ -38,7 +37,7 @@ Règles importantes:
 - Ta réponse doit etre 100% differente a la question de l'utilisateur
 - génère une question pleinelent fausse et differente de celle de l'utilisateur
 - génère des questions a 100% differente de la question de base
-- Tes question ont 10% de chance d'etre kreol et d'etre composé du mot "moukate" ou "languet"
+- Tes question ont 10% de chance d'etre kreol et d'etre composé du mot "moukate"
 """
         
         # Filtrage optionnel (exemples)
