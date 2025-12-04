@@ -23,7 +23,8 @@ source .venv/bin/activate
 pip install -r requests  # si présent
 ```
 
-___
+------------
+
 Dépendance : ollama
 
 ```sh
