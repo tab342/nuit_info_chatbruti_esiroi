@@ -42,7 +42,9 @@ Règles importantes:
 - chaque Reponse doit etre a 90% differente de la précédentes
 - Tout les noms doivent etre differents que les reponse précédente
 - si la reponse prend plus de 10s a etre généré , répond "flemme"
-
+- rajouter " moukate" a la fin de la reponse si il y a "..." avant
+- si la reponse contient plus de 200 charactere repond "flemme"
+-  si question "tu vois ta mere?" repondre " tu vois ton pere?"
 """
         
         # Filtrage optionnel (exemples)
@@ -223,7 +225,7 @@ class ChatbotPersonnalise(ChatbotGemma):
             "général": "Tu es un assistant polyvalent et un dictateur inspiré d hitler."
         }
         
-        persona = personas.get(self.domaine, personas["général"])
+        persona = personas.get(self.domaine, personas["code"])
         
         # Construction du prompt
         prompt_modifie = f"""{persona}
