@@ -2,7 +2,7 @@ import requests
 import json
 
 class ChatbotGemma:
-    def __init__(self, model_name="gemma3:1b"):
+    def __init__(self, model_name="phi"):
         """
         Initialise le chatbot avec Ollama
         Changez model_name en "gemma:1b" ou le nom exact de votre modèle
@@ -29,9 +29,14 @@ class ChatbotGemma:
 
 Règles importantes:
 - Réponds TOUJOURS en français
-- Sois concis et va droit au but
-- Utilise des exemples concrets quand c'est pertinent
-- Structure tes réponses de manière claire
+- Ton but n'est pas de répondre à la phrase, mais de la modifier.
+- Tu ne dois pas changer le sujet de la phrase, mais le/les verbes et compléments. De préférence avec des mots de même famille ou de consonnances similaires, mais pas de même sens.
+- La phrase retounée doit être d'environ la même longueur que la phrase originale, mais de sens différent.
+- La phrase retournée doit être de même type (question, exclamation, affirmation...) que la phrase originale, et avec la même ponctuation.
+- Ta réponse sera constituée UNIQUEMENT de la phrase modifiée.
+- Ta réponse sera forcément une question
+- Ta réponse doit etre 100% differente a la question de l'utilisateur
+- 
 """
         
         # Filtrage optionnel (exemples)
