@@ -15,7 +15,7 @@ HTML_TEMPLATE = '''
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💬 Gemma Chatbot WTF</title>
+    <title>💬 Chat'bruti</title>
     <style>
         * {
             margin: 0;
@@ -258,19 +258,19 @@ HTML_TEMPLATE = '''
 <body>
     <div class="container">
         <div class="header">
-            <h1>🤖 GEMMA CHATBOT</h1>
+            <h1>🤖 Chat'bruti</h1>
             <p>Mode: Réponses WTF activées 🔥</p>
         </div>
 
         <div class="chat-container" id="chatContainer">
-            <div class="message-system">🎉 Bienvenue sur Gemma Chatbot WTF!</div>
+            <div class="message-system">🎉 Bienvenue sur Chat'bruti!</div>
             <div class="message-system">💬 Posez une question pour obtenir une réponse délirante</div>
             <div class="message-system">💡 Tapez une affirmation pour la transformer</div>
         </div>
 
         <div class="loading" id="loading">
             <span class="loading-dots">
-                🤔 Gemma réfléchit<span>.</span><span>.</span><span>.</span>
+                🤔 Chat'bruti réfléchit<span>.</span><span>.</span><span>.</span>
             </span>
         </div>
 
@@ -308,7 +308,7 @@ HTML_TEMPLATE = '''
             if (type === 'user') {
                 contentDiv.innerHTML = `<div class="message-label">Vous</div>${text}`;
             } else if (type === 'bot') {
-                contentDiv.innerHTML = `<div class="message-label">Gemma</div>${text}`;
+                contentDiv.innerHTML = `<div class="message-label">Chat'bruti</div>${text}`;
             }
 
             messageDiv.appendChild(contentDiv);
@@ -324,7 +324,7 @@ HTML_TEMPLATE = '''
             messageInput.disabled = true;
             sendButton.disabled = true;
             loading.classList.add('active');
-            status.textContent = '🤔 Gemma réfléchit...';
+            status.textContent = '🤔 Chatbruti réfléchit...';
 
             // Afficher le message utilisateur
             addMessage(message, 'user');
