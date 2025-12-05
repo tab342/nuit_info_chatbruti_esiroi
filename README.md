@@ -16,7 +16,8 @@ Un petit projet ludique: un "chatbot idiot" — un agent volontairement simplist
 
 
 ## Utilisation
-se connecter au site http://chat-bruti.inge.ovh
+se connecter au site http://chat-bruti.inge.ovh\
+ou, pour faire tourner en local, cloner le repo, lancer `chatbruti.sh` une fois pour installer les requirements, puis lancer main.py et se connecter à http://localhost:2000
 
 
 
