@@ -36,7 +36,7 @@ class ChatbotGUI:
 
         # Génération réponse
         self.display_message("Gemma réfléchit...\n")
-        response = self.bot.generer_reponse(user_input)
+        response = self.bot.generer_reponse_idiote(user_input)
         self.display_message(f"Gemma: {response}\n\n")
 
     def display_message(self, message):
