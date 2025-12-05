@@ -1,46 +1,54 @@
-# Nuit de l'info Chatbruti TEAM ESIROI
+# Nuit de l'info — Chatbruti TEAM ESIROI
 
-  
-- [Nuit de l'info Chatbruti TEAM ESIROI](#nuit-de-linfo-chatbruti-team-esiroi)
-  - [Résumé](#résumé)
-  - [Installation](#installation)
-  - [Utilisation](#utilisation)
-    - [Linux/Mac:](#linuxmac)
-    - [Windows:](#windows)
-  - [Fonctionnement](#fonctionnement)
+- [Résumé](#résumé)
+- [Installation](#installation)
+- [Utilisation](#utilisation)
+- [Fonctionnement](#fonctionnement)
+  - [Architecture générale](#architecture-générale)
+  - [Modification automatique du prompt](#modification-automatique-du-prompt)
+  - [Détection automatique de questions](#détection-automatique-de-questions)
+  - [Génération de réponses idiotes](#génération-de-réponses-idiotes)
+  - [Mode normal : réponse en deux étapes](#mode-normal--réponse-en-deux-étapes)
+  - [Version avec historique](#version-avec-historique)
+  - [Version personnalisée](#version-personnalisée)
+- [Commandes disponibles](#commandes-disponibles)
+- [Notes & bonnes pratiques](#notes--bonnes-pratiques)
+- [Contribuer / Dépannage](#contribuer--dépannage)
 
+---
 
+## Résumé
 
-Résumé
-------
+Ceci est la version locale et CLI du projet **Chat'bruti** de la nuit de l'info 2025 : un chatbot volontairement idiot basé sur un modèle local (via Ollama — ex. Gemma).  
+Le bot produit des réponses absurdes, fausses, répétitives ou caricaturales — parfois en créole — avec pour but l’expérimentation, l’humour et la pédagogie autour des LLM locaux.
 
-Un petit projet ludique: un "chatbot idiot" — un agent volontairement simpliste et caricatural conçu pour des expérimentations, de l'amusement ou des démonstrations pédagogiques. Il répond de façon naïve, répétitive ou absurde selon une personnalité définie.
+---
 
-Installation
-------------
+## Installation
 
-Cloner le dépôt:
+Cloner le dépôt :
 
 ```bash
 git clone https://github.com/tab342/nuit_info_chatbruti_esiroi
 cd nuit_info_chatbruti_esiroi
 ```
+### ⚠️ Note pour distributions Debian / Ubuntu
 
-## Utilisation
-
-### Linux/Mac:
-Lancer le script `chatbruti.sh`\
-Toutes les dépendences et le lancement local de l'IA sont installées par lui.
-
-### Windows:
-Il est à noter que ce projet a été fait sous linux et mac uniquement, aucun des membres de l'équipe ne possédant un ordinateur windows disponible. Cependant, la méthode suivante est *théoriquement* sensé fonctionner:
-1. Dans une console PowerShell, rendre les fichiers PowerShell éxecutables pour cette session:
-```ps
-Set-ExecutionPolicy -Scope Process Bypass
+Pour pouvoir créer un environnement virtuel Python 3.13 sur les distros Debian-based, installez le package suivant :
+```bash
+sudo apt install python3.13-venv
 ```
-2. Lancer le script `chatbruti.ps1`
+## Utilisation
+Lancer le script `chatbruti.sh`\
+Ce script automatise les étapes suivantes :
+- création d'un venv Python
+- installation des dépendances nécessaires (requests, etc.)
+- vérification et installation d'Ollama si nécessaire
+- vérification si le modèle IA est déjà pull (évite un re-pull inutile)
+- démarrage du serveur Ollama (ollama serve)
+- lancement du chatbot Python
+- arrêt propre du serveur Ollama à la fin du script
 
 ## Fonctionnement
-Pour avoir un projet un maximum pratique et responsable, nous avons décidé d'héberger l'IA de Chat'bruti localement sur la machine de l'utilisateur. Lors de la première utilisation, tous les prérequis seront téléchargés, puis l'IA fonctionnera de manière complètement autonome.\
-Comme méthode pour rendre le chatbot idiot, et le plus drôle possible, nous avons décidé de faire un traitement de prompt en deux étapes: d'abord, la requète est envoyée à l'IA avec un prompt très spécifique lui demandant de ne pas y répondre, mais de le modifier, en gardant le sujet de la phrase mais en modifiant verbes et compléments. Ensuite, cette requète modifiée est renvoyée à l'IA, cette fois-ci en lui demandant d'y répondre. De cette façon, l'IA répond plus ou moins sur le sujet (parfois même à la bonne question, si le 1er prompt renvoie une question très peu modifiée), mais souvent très décalé. La partie la plus drôle est souvent de se demander comment, au juste, il a pu déformer la question pour arriver à un résultat.
 
+Chat'bruti CLI fonctionne entièrement en local via Ollama. Le comportement du bot est obtenu par une première requète de transformation de prompt pour déformer la requète, puis une seconde pour répondre à la requète déformée, ce qui donne des résultats complètement décalés et souvent surprenants.
