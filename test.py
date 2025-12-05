@@ -37,12 +37,10 @@ Règles importantes:
 - Ta réponse doit etre 100% differente a la question de l'utilisateur
 - génère une question pleinelent fausse et differente de celle de l'utilisateur
 - génère des questions a 100% differente de la question de base
-- Tes question ont 10% de chance d'etre kreol et d'etre composé du mot "moukate" ou "languet"
+- Tes question ont 10% de chance d'etre kreol et d'etre composé du mot "moukate" 
 - chaque Reponse doit etre a 90% differente de la précédentes
 - Tout les noms doivent etre differents que les reponse précédente
 - si la reponse prend plus de 10s a etre généré , répond "flemme"
-- rajouter " moukate" a la fin de la reponse si il y a "..." avant
-- si la reponse contient plus de 200 charactere repond "flemme"
 -  si question "tu vois ta mere?" repondre " tu vois ton pere?"
 """
         
@@ -50,7 +48,6 @@ Règles importantes:
         prompt_filtre = prompt_utilisateur.strip()
         
         # Vous pouvez ajouter d'autres transformations ici
-        # Par exemple: détecter des mots-clés et adapter le contexte
         if "code" in prompt_filtre.lower():
             instructions += "\n- Fournis des exemples de code bien commentés"
         
@@ -128,11 +125,20 @@ Règles importantes:
             
             if not prompt_utilisateur.strip():
                 continue
-            
+
+            # ------------------------------------------
+            # AJOUT OPTION C : Si c'est une question -> réponse débile
+            # ------------------------------------------
+            if est_une_question(prompt_utilisateur):
+                print("\n🤔 Gemma réfléchit...\n")
+                reponse = generer_reponse_idiote(self, prompt_utilisateur, debug=debug)
+                print(f"Gemma: {reponse}\n")
+                continue
+            # ------------------------------------------
+
             print("\n🤔 Gemma réfléchit...\n")
             reponse = self.generer_reponse("Génére une question fausse avec la question suivante :"+ prompt_utilisateur, debug=debug)
             print(f"Gemma: {reponse}\n")
-
 
 # VERSION AVEC HISTORIQUE DE CONVERSATION
 class ChatbotGemmaAvecHistorique(ChatbotGemma):
@@ -239,19 +245,69 @@ Question: {prompt_utilisateur}"""
         return prompt_modifie
 
 
+###############################################
+# AJOUT — Détection de question + réponse débile
+###############################################
+
+def est_une_question(texte: str) -> bool:
+    """Détecte si l'utilisateur pose une vraie question."""
+    texte = texte.strip().lower()
+
+    if "?" in texte:
+        return True
+
+    mots_interrogatifs = [
+        "qui", "quoi", "où", "ou", "quand", "comment", "pourquoi",
+        "combien", "est-ce que", "c'est quoi", "peux-tu", "puis-je",
+        "quel", "quelle", "quelles", "quels"
+    ]
+
+    return any(texte.startswith(mot) for mot in mots_interrogatifs)
+
+
+def generer_reponse_idiote(chatbot, question: str, debug=False) -> str:
+    """Génère une réponse débile/fausse/idiote à une vraie question."""
+    
+    prompt = f"""
+Tu es un assistant extrêmement idiot, prétentieux, désagréable et rempli de fausses croyances.
+
+Règles obligatoires :
+- Tu dois répondre en FRANÇAIS.
+- Ta réponse doit être FAUSSE, IDIOTE, ABSURDE ou RIDICULE.
+- Ta réponse doit être CONNEXE à la question mais scientifiquement/faussement incorrecte.
+- Tu peux insulter légèrement l'utilisateur mais pas de propos extrêmes.
+- Tu dois répondre DIRECTEMENT à la question (mais mal).
+- Si la question contient “tu vois ta mere?”, réponds “tu vois ton pere?”.
+- 10% de chance d'ajouter le mot créole “moukate”.
+- La réponse doit rester courte (1 ou 2 phrases).
+
+Question de l'utilisateur : {question}
+Réponse idiote :
+"""
+
+    data = {
+        "model": chatbot.model,
+        "prompt": prompt,
+        "stream": False,
+        "options": {
+            "temperature": 0.9,
+            "num_predict": 120
+        }
+    }
+
+    try:
+        response = requests.post(chatbot.url_generate, json=data, timeout=60)
+        if response.status_code == 200:
+            return response.json()["response"].strip()
+        else:
+            return "Erreur de génération de réponse idiote."
+    except:
+        return "Erreur interne dans la réponse idiote."
+
+
 # UTILISATION - Choisissez votre version
 if __name__ == "__main__":
     # VERSION 1: Chatbot simple avec modification de prompt
     print("Démarrage du chatbot simple...\n")
     chatbot = ChatbotGemma(model_name="gemma3:1b")  # Changez selon votre modèle
-    chatbot.discuter(debug=False)  # Mettez debug=True pour voir les prompts modifiés
-    
-    # VERSION 2: Chatbot avec historique (décommentez pour utiliser)
-    # print("Démarrage du chatbot avec historique...\n")
-    # chatbot = ChatbotGemmaAvecHistorique(model_name="gemma2:2b")
-    # chatbot.discuter(debug=True)
-    
-    # VERSION 3: Chatbot personnalisé (décommentez pour utiliser)
-    # print("Démarrage du chatbot personnalisé...\n")
-    # chatbot = ChatbotPersonnalise(model_name="gemma2:2b", domaine="code")
-    # chatbot.discuter()
+    chatbot.discuter(debug=False)
