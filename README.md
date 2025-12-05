@@ -16,7 +16,7 @@ Un petit projet ludique: un "chatbot idiot" — un agent volontairement simplist
 
 
 ## Utilisation
-se connecter au site chat-bruti.inge.ovh
+se connecter au site http://chat-bruti.inge.ovh
 
 
 
