@@ -4,16 +4,6 @@
 - [Installation](#installation)
 - [Utilisation](#utilisation)
 - [Fonctionnement](#fonctionnement)
-  - [Architecture générale](#architecture-générale)
-  - [Modification automatique du prompt](#modification-automatique-du-prompt)
-  - [Détection automatique de questions](#détection-automatique-de-questions)
-  - [Génération de réponses idiotes](#génération-de-réponses-idiotes)
-  - [Mode normal : réponse en deux étapes](#mode-normal--réponse-en-deux-étapes)
-  - [Version avec historique](#version-avec-historique)
-  - [Version personnalisée](#version-personnalisée)
-- [Commandes disponibles](#commandes-disponibles)
-- [Notes & bonnes pratiques](#notes--bonnes-pratiques)
-- [Contribuer / Dépannage](#contribuer--dépannage)
 
 ---
 
