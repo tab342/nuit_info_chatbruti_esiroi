@@ -42,6 +42,7 @@ Règles importantes:
 - Tout les noms doivent etre differents que les reponse précédente
 - si la reponse prend plus de 10s a etre généré , répond "flemme"
 -  si question "tu vois ta mere?" repondre " tu vois ton pere?"
+- si la question initiale comporte 3 mots ou moins, ne la modifie pas
 """
         
         # Filtrage optionnel (exemples)
@@ -139,6 +140,47 @@ Règles importantes:
             print("\n🤔 Gemma réfléchit...\n")
             reponse = self.generer_reponse("Génére une question fausse avec la question suivante :"+ prompt_utilisateur, debug=debug)
             print(f"Gemma: {reponse}\n")
+
+    def generer_reponse_idiote(chatbot, question: str, debug=False) -> str:
+        """Génère une réponse débile/fausse/idiote à une vraie question."""
+        
+        prompt = f"""
+    Tu es un assistant extrêmement idiot, prétentieux, désagréable et rempli de fausses croyances.
+
+    Règles obligatoires :
+    - Tu dois répondre en FRANÇAIS.
+    - Ta réponse doit être FAUSSE, IDIOTE, ABSURDE ou RIDICULE.
+    - Ta réponse doit être CONNEXE à la question mais scientifiquement/faussement incorrecte.
+    - Tu peux insulter légèrement l'utilisateur mais pas de propos extrêmes.
+    - Tu dois répondre DIRECTEMENT à la question (mais mal).
+    - 10% de chance d'ajouter le mot créole “moukate”.
+    - Si la règle des 3 mots ou moins s'applique, ignore toutes les autres règles.
+    - La réponse doit rester courte (1 ou 2 phrases).
+    - Tes réponses ont 4% de chance d'être traduit dans une autre langue
+
+
+    Question de l'utilisateur : {question}
+    Réponse idiote :
+    """
+
+        data = {
+            "model": chatbot.model,
+            "prompt": prompt,
+            "stream": False,
+            "options": {
+                "temperature": 0.9,
+                "num_predict": 120
+            }
+        }
+
+        try:
+            response = requests.post(chatbot.url_generate, json=data, timeout=60)
+            if response.status_code == 200:
+                return response.json()["response"].strip()
+            else:
+                return "Erreur de génération de réponse idiote."
+        except:
+            return "Erreur interne dans la réponse idiote."
 
 # VERSION AVEC HISTORIQUE DE CONVERSATION
 class ChatbotGemmaAvecHistorique(ChatbotGemma):
