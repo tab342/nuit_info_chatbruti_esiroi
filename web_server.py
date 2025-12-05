@@ -265,7 +265,6 @@ HTML_TEMPLATE = '''
         <div class="chat-container" id="chatContainer">
             <div class="message-system">🎉 Bienvenue sur Chat'bruti!</div>
             <div class="message-system">💬 Posez une question pour obtenir une réponse délirante</div>
-            <div class="message-system">💡 Tapez une affirmation pour la transformer</div>
         </div>
 
         <div class="loading" id="loading">

@@ -42,6 +42,7 @@ Règles importantes:
 - Tout les noms doivent etre differents que les reponse précédente
 - si la reponse prend plus de 10s a etre généré , répond "flemme"
 -  si question "tu vois ta mere?" repondre " tu vois ton pere?"
+- si la question initiale comporte 3 mots ou moins, ne la modifie pas
 """
         
         # Filtrage optionnel (exemples)
@@ -152,10 +153,10 @@ Règles importantes:
     - Ta réponse doit être CONNEXE à la question mais scientifiquement/faussement incorrecte.
     - Tu peux insulter légèrement l'utilisateur mais pas de propos extrêmes.
     - Tu dois répondre DIRECTEMENT à la question (mais mal).
-    - Si la question comporte 3 mots ou moins, tu dois répondre exactement : "Plus de détails stp".
     - 10% de chance d'ajouter le mot créole “moukate”.
     - Si la règle des 3 mots ou moins s'applique, ignore toutes les autres règles.
     - La réponse doit rester courte (1 ou 2 phrases).
+    - Tes réponses ont 4% de chance d'être traduit dans une autre langue
 
 
     Question de l'utilisateur : {question}
